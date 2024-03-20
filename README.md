@@ -7,10 +7,10 @@
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-active-success.svg?style=plastic)](https://github.com/Aleho84/tranqueras-mqtt)
-[![GitHub Version](https://img.shields.io/github/package-json/v/aleho84/tranqueras-mqtt?style=plastic)](https://github.com/Aleho84/tranqueras-mqtt)
-[![GitHub Issues](https://img.shields.io/github/issues/aleho84/tranqueras-mqtt?style=plastic)](https://github.com/Aleho84/tranqueras-mqtt/issues)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/aleho84/tranqueras-mqtt?style=plastic)](https://github.com/Aleho84/tranqueras-mqtt/commits/main/)
+[![Status](https://img.shields.io/badge/status-active-success.svg?style=plastic)](https://github.com/Aleho84/lorawan-gate-monitoring)
+[![GitHub Version](https://img.shields.io/github/package-json/v/aleho84/lorawan-gate-monitoring?style=plastic)](https://github.com/Aleho84/lorawan-gate-monitoring)
+[![GitHub Issues](https://img.shields.io/github/issues/aleho84/lorawan-gate-monitoring?style=plastic)](https://github.com/Aleho84/lorawan-gate-monitoring/issues)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/aleho84/lorawan-gate-monitoring?style=plastic)](https://github.com/Aleho84/lorawan-gate-monitoring/commits/main/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=plastic)](/LICENSE)
 
 </div>
