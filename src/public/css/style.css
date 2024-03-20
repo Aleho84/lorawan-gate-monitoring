@@ -1,0 +1,252 @@
+body {
+  padding: 0px;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  font-family: Arial;
+  font-size: 14px;
+  color: #1278bf;
+  text-shadow: 0px 0px 2px #217ab9;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+  font-family: Arial;
+  font-size: 14px;
+  color: #1f2020;
+  text-shadow: 0px 0px 2px #000000;
+}
+
+.errorTitle {
+  color: #ff0000;
+}
+
+.errorMsg {
+  color: #333;
+}
+
+.preError {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.tTitle {
+  text-align: left;
+  font-family: Arial Black;
+  font-weight: bold;
+  font-size: 28px;
+  background: #424242;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.4),
+    0px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* ***login*** */
+.loginForm {
+  width: 380px;
+  margin: 4em auto;
+  padding: 2em 2em 2em 2em;
+  background: #fafafa;
+  border: 1px solid #ebebeb;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
+    rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+}
+
+.loginGroup {
+  position: relative;
+  margin-bottom: 25px;
+  --color: #5757577e;
+}
+
+.loginInput {
+  font-size: 16px;
+  padding: 10px 10px 10px 10px;
+  appearance: none;
+  display: block;
+  background: #fafafa;
+  color: #636363;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #757575;
+}
+
+.loginInput:focus {
+  outline: none;
+}
+
+.loginLabel {
+  color: rgb(100, 140, 240);
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: all 0.2s ease;
+}
+
+.loginInput:focus + .loginLabel,
+.loginInput:not(:placeholder-shown) + .loginLabel {
+  transform: translateY(-16px) scale(0.7);
+  transform-origin: top left;
+  --color: #3866f2;
+}
+
+.formButton {
+  width: 60%;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+  margin: 0 10px;
+  padding: 10px 0;
+  cursor: pointer;
+  color: #0e0e0e;
+  background-color: #3160b6;
+  transition: 0.4s;
+}
+
+.formButton:hover {
+  color: white;
+  box-shadow: 0 0 20px #7397db;
+  background-color: #3160b6;
+}
+
+.wrapper {
+  text-align: center;
+}
+/* ****** */
+
+/* ***logger*** */
+.sp_timestamp {
+  text-align: left;
+  font-family: Arial;
+  font-size: 11px;
+  color: #1278bf;
+  text-shadow: 0px 0px 2px #217ab9;
+  /* width: 106px; */
+}
+
+.sp_level {
+  text-align: left;
+  font-family: Arial;
+  font-size: 11px;
+  color: #f32d2d;
+  text-shadow: 0px 0px 2px #217ab9;
+  /* width: 28px; */
+}
+
+.sp_message {
+  text-align: left;
+  font-family: Arial;
+  font-size: 11px;
+  color: #000000;
+  text-shadow: 0px 0px 2px #217ab9;
+}
+
+.loggerForm {
+  width: 800px;
+  margin: 4em auto;
+  padding: 2em 2em 2em 2em;
+  background: #fafafa;
+  border: 1px solid #ebebeb;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
+    rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+}
+/* ****** */
+
+/* ***graph*** */
+.graphContainer {
+  max-width: 50%;
+  margin: 4em auto;
+  padding: 1em 1em 1em 1em;
+  background: #fafafa;
+  border: 1px solid #ebebeb;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
+    rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+}
+
+.graphTitle {
+  text-align: left;
+  font-family: Arial Black;
+  font-weight: bold;
+  font-size: 28px;
+  background: #424242;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.4),
+    0px -1px 1px rgba(0, 0, 0, 0.3);
+}
+/* ****** */
+
+/* ***Tablas*** */
+.tabla-container {
+  max-width: 75%;
+  min-width: 500px;
+  margin: 0 auto;
+  margin: 4em auto;
+  padding: 1em 1em 1em 1em;
+  background: #fafafa;
+  border: 1px solid #ebebeb;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
+    rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+}
+
+.tabla-responsive {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-responsive th,
+.tabla-responsive td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.tabla-responsive th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para los estados */
+.estado-abierto {
+  background-color: #b3e6b3;
+}
+
+.estado-cerrado {
+  background-color: #ff9999;
+}
+
+.bateria-normal {
+  background-color: #b3e6b3;
+}
+
+.bateria-baja {
+  background-color: #f0f885;
+}
+
+.estado-gris {
+  background-color: #33333360;
+}
+/* ****** */

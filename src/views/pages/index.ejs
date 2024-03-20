@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head', {title}) %>
+
+<body>
+
+  <%- include('../partials/nav', {user}) %>
+
+  <!-- Tabla de dispositivos -->
+  <div class="tabla-container">
+    <h2 class="tTitle">Dispositivos</h2>
+    <table class="tabla-responsive">
+      <thead>
+        <tr>
+          <th>Device ID</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th>Batería</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tablaDevice.forEach(function(device) { %>
+        <tr>
+          <!-- columna deveui -->
+          <td><%= device.deveui %></td>
+          <!-- columna description -->
+          <td><%= device.description %></td>
+          <!-- columna switch -->
+          <% if (device.switch === 1) { %>
+          <td class="estado-abierto">Tranquera Cerrada</td>
+          <% } else if (device.switch === 0) { %>
+          <td class="estado-cerrado">Tranquera Abierta</td>
+          <% } else { %>
+          <td class="estado-gris">Uknown</td>
+          <% } %>
+          <!-- columna bat -->
+          <% if (device.bat === -1) { %>
+          <td class="estado-gris">Uknown</td>
+          <% } else if (device.bat < 3.4) { %>
+          <td class="bateria-baja"><%= device.bat %></td>
+          <% } else { %>
+          <td class="bateria-normal"><%= device.bat %></td>
+          <% } %>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tabla Historico -->
+  <div class="tabla-container">
+    <h2 class="tTitle">Historico</h2>
+    <table class="tabla-responsive">
+      <thead>
+        <tr>
+          <th>TimeStamp</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>St</th>
+          <th>Bat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tablaHistory.forEach(function(device) { %>
+        <tr>
+          <td class="sp_timestamp"><%= device.time %></td>
+          <td class="sp_level"><%= device.deveui %></td>
+          <td class="sp_message"><%= device.description %></td>
+          <td class="sp_message"><%= device.switch %></td>
+          <td class="sp_message"><%= device.bat %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tabla Logs Historico -->
+  <div class="tabla-container">
+    <h2 class="tTitle">Logs</h2>
+    <table class="tabla-responsive">
+      <thead>
+        <tr>
+          <th>TimeStamp</th>
+          <th>Tipo</th>
+          <th>Modulo</th>
+          <th>Mensaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tablaLog.forEach(function(log) { %>
+        <tr>
+          <% 
+            var date = new Date(log.timestamp);
+            var year = date.getFullYear();
+            var month = ("0" + (date.getMonth() + 1)).slice(-2); // Los meses en JavaScript comienzan desde 0
+            var day = ("0" + date.getDate()).slice(-2);
+            var hours = ("0" + date.getHours()).slice(-2);
+            var minutes = ("0" + date.getMinutes()).slice(-2);
+            var seconds = ("0" + date.getSeconds()).slice(-2);
+            var formattedTimestamp = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+          %>
+          <td class="sp_timestamp"><%= log.timestamp %></td>
+          <td class="sp_level"><%= log.tipo %></td>
+          <td class="sp_message"><%= log.modulo %></td>
+          <td class="sp_message"><%= log.mensaje %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+
+<%- include('../partials/scripts') %>
+
+</html>

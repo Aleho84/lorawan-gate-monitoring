@@ -1,0 +1,8 @@
+<div class="error-container">
+  <div style="display: flex; align-items: center;">
+    <img src="/img/cruz.png" alt="Error" width="48" height="48">
+    <h1 class="errorTitle"><%= error.message %></h1>
+  </div>    
+  <h2 class="errorMsg"><%= error.status %></h2>
+  <pre class="errorMsg"><%= error.stack %></pre>
+</div>

@@ -1,0 +1,25 @@
+<!-- boostrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  const timeStamp = function(dateTime) {
+    try {
+      const newDate = new Date(dateTime);
+      const separadorDia = '-';
+      const separadorHora = ':';
+
+      const año = newDate.getFullYear();
+      const mes = ((newDate.getMonth() + 1) < 10) ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1);
+      const dia = (newDate.getDate() < 10) ? '0' + newDate.getDate() : newDate.getDate();
+      // const hora = newDate.getHours();
+      // const minuto = newDate.getMinutes();
+
+      // return año + separadorDia + mes + separadorDia + dia + ' ' + hora + separadorHora + minuto;
+      return año + separadorDia + mes + separadorDia + dia;
+    } catch (error) {
+      return {
+        error: `${error}`
+      };
+    };
+  };
+</script>
