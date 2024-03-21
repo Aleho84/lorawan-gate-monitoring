@@ -81,7 +81,7 @@ export class MongoDBData extends MongoClass {
             }));
             const json2csvParser = new Parser();
             const csv = json2csvParser.parse(formattedData);
-            fs.writeFile(path.join(__dirname, '../logs/tranqueras-mqtt.csv'), csv, function (err) {
+            fs.writeFile(path.join(__dirname, '../logs/lorawan-rawdata.csv'), csv, { encoding: 'utf-8' }, function (err) {
                 if (err) throw err;
             });
         } catch (error) {
