@@ -230,11 +230,11 @@ th {
 }
 
 /* Estilos para los estados */
-.estado-abierto {
+.estado-cerrado {
   background-color: #b3e6b3;
 }
 
-.estado-cerrado {
+.estado-abierto {
   background-color: #ff9999;
 }
 

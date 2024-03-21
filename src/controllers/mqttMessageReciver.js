@@ -48,7 +48,7 @@ export const mqttDataReciver = async function (msg) {
 
 function mqttNotifier(msgObj, description) {
     let estado = '';
-    (msgObj.switch === 0) ? estado = 'abierto' : estado = 'cerrado';
+    (msgObj.switch === 1) ? estado = 'abierto' : estado = 'cerrado';
 
     const imgOpen = 'https://cdn.icon-icons.com/icons2/2248/PNG/96/boom_gate_up_icon_137856.png';
     const imgClose = 'https://cdn.icon-icons.com/icons2/2248/PNG/96/boom_gate_down_icon_135872.png'
