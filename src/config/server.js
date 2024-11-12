@@ -106,15 +106,6 @@ function onListening() {
         ? 'pipe ' + addr
         : 'port ' + addr.port;
     logger('info', 'SERVER', `💻 Server PROTOCOL: ${process.env.PROTOCOL} en PUERTO: ${process.env.PORT}. 🪛  Worker PID: ${process.pid}.`);
-    logger('info', 'MQTT', `Conectando...`);
-    new MQTT(
-        process.env.MQTT_SERVER,
-        process.env.MQTT_USER,
-        process.env.MQTT_PASS,
-        process.env.MQTT_PORT,
-        process.env.MQTT_TOPIC,
-        process.env.MQTT_SENDER
-    );
 };
 
 
@@ -129,6 +120,22 @@ export default async () => {
         logger('info', 'SERVER', `🌱 ENVIRONMENT=${process.env.NODE_ENV}`);
     } catch (error) {
         logger('error', 'SERVER', `Error al iniciar el servidor ❌ ${error}`);
+        process.exit(1);
+    }
+
+    try {
+        logger('info', 'MQTT', `Conectando...`);
+        const mqttClient = new MQTT(
+            process.env.MQTT_SERVER,
+            process.env.MQTT_USER,
+            process.env.MQTT_PASS,
+            process.env.MQTT_PORT,
+            process.env.MQTT_TOPIC,
+            process.env.MQTT_SENDER
+        );
+        await mqttClient.connect();
+    } catch (error) {
+        logger('error', 'MQTT', `Error al iniciar el servicio MQTT ❌ ${error}`);
         process.exit(1);
     }
 };
