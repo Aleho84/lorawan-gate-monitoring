@@ -15,7 +15,7 @@ export const mqttDataReciver = async function (msg) {
 
         if (msgObj.switch === 2 || description === 'Unknown') {
             console.log('-OMITIDO!');
-            console.log('DEBUGER ****************************************************************');
+            console.log('************************************************************************');
             return
         }
 
@@ -39,7 +39,7 @@ export const mqttDataReciver = async function (msg) {
 
         dataDao.create(msgObj);
         dataDao.exportDataToCSV();
-        console.log('DEBUGER ****************************************************************');
+        console.log('************************************************************************');
     } catch (error) {
         console.log(error);
         throw new Error(error.message);
@@ -68,6 +68,6 @@ function mqttNotifier(msgObj, description) {
         html: htmlMsg
     })
         .then(info => {
-            console.log('Message sent successfully');
-        });
+            console.log(`-EMAIL Response: ${info.message}`);
+        })
 }

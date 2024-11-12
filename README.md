@@ -25,13 +25,9 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
+- [Running the tests](#test)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -63,73 +59,68 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
+* **Node.js and npm:** Make sure you have the latest versions installed. If not, download them from [https://nodejs.org/](https://nodejs.org/).
+* **A code editor:** Visual Studio Code, Sublime Text, or whatever you prefer. The important thing is that you feel comfortable!
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+1.  **Clone the repository:**
+    ```bash 
+    git clone https://github.com/Aleho84/lorawan-gate-monitoring.git
+    ```
 
-Say what the step will be
+3.  **Install dependencies:** 
+    ```bash 
+    npm install
+    ```
 
-```
-Give the example
-```
+5.  **Configure environment variables:** Create a `.env` file and fill in the necessary data (don't forget the JWT secret!)
+    ```bash
+    # .env Example
+    NODE_ENV='development'
+    PROTOCOL='http'
+    PORT=80
 
-And repeat
+    DB_MODE='mongo'
+    MONGOOSE_URI='mongodb://localhost:27017'
 
-```
-until finished
-```
+    MQTT_SERVER='192.168.0.1'
+    MQTT_USER='mqtt_user'
+    MQTT_PASS='mqtt_user_password'
+    MQTT_PORT=1883
+    MQTT_TOPIC='example/#'
+    MQTT_SENDER='mqtt_sender'
 
-End with an example of getting some data out of the system or using it for a little demo.
+    MAIL_FROM='lorawan-gate-monitoring@mail.com'
+    MAIL_TO='user1@mail.com; user2@mail.com'   
+
+    MAIL_HOST='smtp.gmail.com'
+    MAIL_PORT=465
+    MAIL_SECURE=true
+    MAIL_IGNORETLS=false
+    MAIL_USER='google_account@gmail.com'
+    MAIL_PASS='google_account_password'
+    ```
+
+6.  **Start the server:** 
+    ```bash
+    npm start
+    ```
+
+8.  **Open http://localhost:80 in the browser and enjoy!** 🎉
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
+    ```bash
+    npm run test
+    ```
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Express](https://expressjs.com/) - Server Framework
+- [MongoDB](https://www.mongodb.com/) - Database
 
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@aleho84](https://github.com/aleho84) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References

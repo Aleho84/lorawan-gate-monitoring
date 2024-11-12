@@ -1,4 +1,4 @@
-import packageJson from '../../package.json' assert {type: "json"};
+import readJsonFile from '../utils/readJson.js';
 import { mqttDataReciver } from './mqttMessageReciver.js';
 
 export const getIndexPage = async (req, res) => {
@@ -6,7 +6,7 @@ export const getIndexPage = async (req, res) => {
     const { LastDeviceStates, DevicesHistory, LogsHistory } = res;
 
     res.render('index', {
-      title: packageJson.name.toUpperCase(),
+      title: readJsonFile.name.toUpperCase(),
       tablaDevice: LastDeviceStates,
       tablaHistory: DevicesHistory,
       tablaLog: LogsHistory,
