@@ -41,8 +41,12 @@ class MQTT {
                 this.retryConect += 1;
                 if (this.retryConect > 3) {
                     logger('error', 'MQTT', `❌ Error conecting server ${this.serverName}: ${error}. Closing Server`);
-                    process.exit(1);
-                } 
+                    if (process.env.NODE_ENV === 'development') {
+                        logger('error', 'MQTT', `❌ MQTT no esta conectado, reinicie el servidor`);
+                    } else {
+                        process.exit(1);
+                    }
+                }
             });
 
             client.on('message', (topic, msg) => {

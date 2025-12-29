@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 //devices
+//unicamente para migracion inicial, luego toma los valores de la base de datos
 const devices = [
     { deveui: '00137A1000005149', description: 'PIA-VH2 Acceso Oeste' },
     { deveui: '00137A100000313B', description: 'PIA-VH2 Acceso Este' },

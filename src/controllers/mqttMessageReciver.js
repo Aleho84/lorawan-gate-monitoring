@@ -1,12 +1,24 @@
 import 'dotenv/config';
-import { dataDao } from '../daos/index.js';
+import { dataDao, deviceDao } from '../daos/index.js';
 import sendEmail from '../utils/mailer.js';
-import { devices } from '../config/settings.js';
 
 export const mqttDataReciver = async function (msg) {
     try {
         const msgObj = JSON.parse(msg);
-        const description = devices.find((device) => device.deveui === msgObj.deveui)?.description || 'Unknown';
+
+        // Fix: Parsea la fecha "DD/MM/YYYY HH:mm:ss"
+        if (msgObj.timestamp && typeof msgObj.timestamp === 'string') {
+            msgObj.time = parseCustomDate(msgObj.timestamp);
+            delete msgObj.timestamp;
+        } else if (typeof msgObj.time === 'string') {
+            // Fix: si el tiempo viene como string en el mismo formato
+            msgObj.time = parseCustomDate(msgObj.time);
+        } else if (!msgObj.time) {
+            msgObj.time = new Date();
+        }
+
+        const device = await deviceDao.getByDeveui(msgObj.deveui);
+        const description = device ? device.description : 'Unknown';
 
         console.log('*********************** DEBUGER: mqttDataReciver ***********************');
         console.log('-DEVEUI         :', msgObj.deveui);
@@ -43,6 +55,25 @@ export const mqttDataReciver = async function (msg) {
     } catch (error) {
         console.log(error);
         throw new Error(error.message);
+    }
+}
+
+function parseCustomDate(dateStr) {
+    try {
+        // Formato esperado: "DD/MM/YYYY HH:mm:ss"
+        const [datePart, timePart] = dateStr.split(' ');
+        if (!datePart || !timePart) return new Date(dateStr); // Intento estandard si falla split
+
+        const [day, month, year] = datePart.split('/').map(Number);
+        const [hour, minute, second] = timePart.split(':').map(Number);
+
+        // Verificar si los componentes son válidos
+        if (isNaN(day) || isNaN(month) || isNaN(year)) return new Date(dateStr);
+
+        return new Date(year, month - 1, day, hour, minute, second);
+    } catch (e) {
+        console.error("Error parsing date:", dateStr, e);
+        return new Date();
     }
 }
 

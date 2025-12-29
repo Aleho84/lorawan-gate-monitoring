@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Gestión de Dispositivos</h1>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDeviceModal">
+                <i class="fas fa-plus"></i> Nuevo Dispositivo
+            </button>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Descripción</th>
+                                <th>DevEUI</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (devices.length > 0) { %>
+                                <% devices.forEach(function(device) { %>
+                                    <tr>
+                                        <td><%= device.description %></td>
+                                        <td><code><%= device.deveui %></code></td>
+                                        <td class="text-end">
+                                            <button class="btn btn-sm btn-outline-primary me-1" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#editDeviceModal" 
+                                                onclick="setupEdit('<%= device._id %>', '<%= device.deveui %>', '<%= device.description %>')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <a href="/devices/delete/<%= device._id %>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro de eliminar este dispositivo?');">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted py-4">
+                                        No hay dispositivos registrados
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Agregar -->
+    <div class="modal fade" id="addDeviceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/devices/add" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Agregar Dispositivo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="deveui" class="form-label">DevEUI</label>
+                            <input type="text" class="form-control" id="deveui" name="deveui" required minlength="16" maxlength="16" placeholder="00137A1000005149">
+                            <div class="form-text">Identificador único de 16 caracteres.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="description" name="description" required placeholder="Ej: Portón Principal">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar -->
+    <div class="modal fade" id="editDeviceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="editForm" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Dispositivo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="edit_deveui" class="form-label">DevEUI</label>
+                            <input type="text" class="form-control" id="edit_deveui" name="deveui" required minlength="16" maxlength="16">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit_description" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="edit_description" name="description" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/scripts') %>
+    
+    <script>
+        function setupEdit(id, deveui, description) {
+            document.getElementById('editForm').action = '/devices/edit/' + id;
+            document.getElementById('edit_deveui').value = deveui;
+            document.getElementById('edit_description').value = description;
+        }
+    </script>
+</body>
+</html>

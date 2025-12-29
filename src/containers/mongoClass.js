@@ -43,7 +43,7 @@ class MongoClass {
 
   async delete(id) {
     try {
-      const deletedDoc = await this.collection.findByIdAndRemove(id);
+      const deletedDoc = await this.collection.findByIdAndDelete(id);
       return deletedDoc;
     } catch (err) {
       throw new Error(err);

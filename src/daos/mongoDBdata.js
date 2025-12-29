@@ -1,6 +1,6 @@
 import MongoClass from '../containers/mongoClass.js';
 import { dataSchema } from '../models/dataSchema.js';
-import { devices } from '../config/settings.js';
+import { deviceDao } from './index.js';
 import logger from '../utils/logger.js';
 import { Parser } from 'json2csv';
 import fs from 'fs';
@@ -26,8 +26,9 @@ export class MongoDBData extends MongoClass {
 
     async getLastDeviceStates() {
         try {
-            // Obtiene los dispositivos únicos del array
-            const uniqueDeveuis = [...new Set(devices.map((device) => device.deveui))];
+            // Obtiene los dispositivos desde BD
+            const devices = await deviceDao.getAll();
+            const uniqueDeveuis = devices.map(d => d.deveui);
 
             // Consulta los últimos registros para cada dispositivo
             const latestData = await Promise.all(
@@ -55,6 +56,8 @@ export class MongoDBData extends MongoClass {
     async getHistoryAll() {
         try {
             const deviceHistory = await this.collection.find({}).sort({ time: -1 }).limit(20);
+            const devices = await deviceDao.getAll();
+
             const formattedData = deviceHistory.map((doc) => ({
                 deveui: doc.deveui,
                 description: devices.find((device) => device.deveui === doc.deveui)?.description || 'Unknown',
@@ -72,6 +75,8 @@ export class MongoDBData extends MongoClass {
     async exportDataToCSV() {
         try {
             const data = await this.collection.find({}).limit(500);
+            const devices = await deviceDao.getAll();
+
             const formattedData = data.map((doc) => ({
                 time: doc.time,
                 deveui: doc.deveui,

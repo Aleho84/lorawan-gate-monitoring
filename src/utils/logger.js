@@ -1,17 +1,23 @@
 import { logDao } from '../daos/index.js';
 
 export default function (tipo, modulo, mensaje) {
+    const now = new Date();
+    // Save raw date for Mongoose compatibility
     const data_log = {
-        timestamp: formatDate(new Date(Date.now())),
+        timestamp: now,
         tipo,
         modulo,
         mensaje
     };
 
-    console.log(`<<${data_log.timestamp.toString()}>> [${modulo}]: ${mensaje}`);
+    // Formatted string for console
+    const consoleTimestamp = formatDate(now);
+    console.log(`<<${consoleTimestamp}>> [${modulo}]: ${mensaje}`);
 
     try {
-        logDao.create(data_log);
+        if (logDao) {
+            logDao.create(data_log);
+        }
     } catch (error) {
         console.error('*ERROR EN LOGGER*', error);
     }
