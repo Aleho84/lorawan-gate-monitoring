@@ -2,6 +2,8 @@ import 'dotenv/config';
 import { dataDao, deviceDao } from '../daos/index.js';
 import sendEmail from '../utils/mailer.js';
 
+import { getIo } from '../config/websocket.js';
+
 export const mqttDataReciver = async function (msg) {
     try {
         const msgObj = JSON.parse(msg);
@@ -49,8 +51,24 @@ export const mqttDataReciver = async function (msg) {
             }
         }
 
-        dataDao.create(msgObj);
+        const newData = await dataDao.create(msgObj);
         dataDao.exportDataToCSV();
+
+        // Emit socket event for real-time update
+        try {
+            const io = getIo();
+            const payload = {
+                ...msgObj,
+                description: description,
+                formattedTime: msgObj.time.toLocaleString('es-ES')
+            };
+            io.emit('dashboard:update', payload);
+            console.log('-SOCKET EMIT    : dashboard:update');
+            console.log(payload);
+        } catch (socketError) {
+            console.error('Error emitting socket event:', socketError);
+        }
+
         console.log('************************************************************************');
     } catch (error) {
         console.log(error);

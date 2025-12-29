@@ -1,7 +1,10 @@
 import logger from '../utils/logger.js';
 
-export default (ioServer) => {
-    ioServer.on('connection', (socket) => {
+let io;
+
+export const initSocket = (ioServer) => {
+    io = ioServer;
+    io.on('connection', (socket) => {
         socket.emit(`server_handshake`);
 
         socket.on('client_handshake', () => {
@@ -12,4 +15,11 @@ export default (ioServer) => {
             logger('info', 'WEBSOKET', `📱 Cliente [${socket.id}] desconectado`);
         });
     });
+};
+
+export const getIo = () => {
+    if (!io) {
+        throw new Error("Socket.io not initialized!");
+    }
+    return io;
 };

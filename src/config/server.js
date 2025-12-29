@@ -7,7 +7,7 @@ import https from 'https';
 import MQTT from '../utils/mqtt.js'
 import path from 'path';
 import { Server } from "socket.io";
-import websockets from '../config/websocket.js';
+import { initSocket } from '../config/websocket.js';
 import logger from '../utils/logger.js';
 import fs from 'fs';
 
@@ -63,7 +63,7 @@ app.use(function (error, req, res, next) {
 app.use('/', indexRouter);
 
 // WEBSOKET
-websockets(ioServer);
+initSocket(ioServer);
 
 function normalizePort(val) {
     // normaliza un puerto en un numero, una cadena o un valor falso.
