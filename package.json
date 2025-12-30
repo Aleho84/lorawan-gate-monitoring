@@ -1,6 +1,6 @@
 {
   "name": "lorawan-gate-monitoring",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Monitoring of gates through LoraWan devices",
   "main": "./src/app.js",
   "type": "module",

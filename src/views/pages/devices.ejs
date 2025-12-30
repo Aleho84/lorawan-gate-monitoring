@@ -39,11 +39,11 @@
                                                         onclick="setupEdit('<%= device._id %>', '<%= device.deveui %>', '<%= device.description %>')">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <a href="/devices/delete/<%= device._id %>"
-                                                        class="btn btn-sm btn-outline-danger"
-                                                        onclick="return confirm('¿Estás seguro de eliminar este dispositivo?');">
+                                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteDeviceModal"
+                                                        onclick="setupDelete('<%= device._id %>', '<%= device.deveui %>')">
                                                         <i class="fa fa-trash-o"></i>
-                                                    </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <% }); %>
@@ -126,6 +126,31 @@
                 </div>
             </div>
 
+            <!-- Modal Eliminar -->
+            <div class="modal fade" id="deleteDeviceModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="deleteForm" method="POST">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Eliminar Dispositivo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Estás seguro de que deseas eliminar el dispositivo con DevEUI <strong
+                                        id="delete_deveui"></strong>?</p>
+                                <p class="text-muted small">Esta acción no se puede deshacer.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <%- include('../partials/scripts') %>
 
                 <script>
@@ -133,6 +158,11 @@
                         document.getElementById('editForm').action = '/devices/edit/' + id;
                         document.getElementById('edit_deveui').value = deveui;
                         document.getElementById('edit_description').value = description;
+                    }
+
+                    function setupDelete(id, deveui) {
+                        document.getElementById('deleteForm').action = '/devices/delete/' + id;
+                        document.getElementById('delete_deveui').textContent = deveui;
                     }
                 </script>
     </body>

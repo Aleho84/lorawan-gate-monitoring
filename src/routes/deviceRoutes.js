@@ -6,6 +6,6 @@ const deviceRouter = Router();
 deviceRouter.get('/', getDevicesPage);
 deviceRouter.post('/add', addDevice);
 deviceRouter.post('/edit/:id', editDevice);
-deviceRouter.get('/delete/:id', deleteDevice); // Usando GET por simplicidad
+deviceRouter.post('/delete/:id', deleteDevice);
 
 export default deviceRouter;

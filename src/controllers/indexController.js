@@ -6,7 +6,7 @@ export const getIndexPage = async (req, res) => {
     const { LastDeviceStates, DevicesHistory, LogsHistory } = res;
 
     res.render('index', {
-      title: readJsonFile.name.toUpperCase(),
+      title: 'LoRaWAN Gate Monitoring',
       tablaDevice: LastDeviceStates,
       tablaHistory: DevicesHistory,
       tablaLog: LogsHistory,
