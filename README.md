@@ -24,6 +24,7 @@
 ## 📝 Table of Contents
 
 - [About](#about)
+- [Project Analysis](PROJECT.md)
 - [Getting Started](#getting_started)
 - [Running the tests](#test)
 - [Built Using](#built_using)
@@ -52,6 +53,8 @@ This system provides real-time monitoring of doors in compressor plants, improvi
 ### Future Work
 
 Future enhancements to this system could include integrating it with an alert system to send notifications when doors are opened, adding more sensors for additional monitoring capabilities, and developing a user-friendly dashboard for easy viewing and analysis of the data.
+
+[PROJECT ANALYSIS](PROJECT.md)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
